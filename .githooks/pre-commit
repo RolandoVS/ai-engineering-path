@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+# Bloquea el commit si algo parece una API key.
+# Saltar deliberadamente: git commit --no-verify
+set -uo pipefail
+
+patrones='sk-ant-api[0-9a-zA-Z_-]{20,}|sk-proj-[0-9a-zA-Z_-]{20,}|sk-[0-9a-zA-Z]{32,}|AKIA[0-9A-Z]{16}|ghp_[0-9a-zA-Z]{30,}|xox[baprs]-[0-9a-zA-Z-]{10,}'
+
+encontrado=0
+for f in $(git diff --cached --name-only --diff-filter=ACM); do
+  [ -f "$f" ] || continue
+  case "$f" in .githooks/pre-commit|*.example) continue ;; esac
+  if git show ":$f" 2>/dev/null | grep -nEq "$patrones"; then
+    echo "  ✗ $f"
+    git show ":$f" | grep -nE "$patrones" | sed 's/^/      línea /' | cut -c1-90
+    encontrado=1
+  fi
+done
+
+if [ "$encontrado" = "1" ]; then
+  cat <<'MSG'
+
+═══════════════════════════════════════════════════════
+  COMMIT BLOQUEADO: parece haber una API key
+═══════════════════════════════════════════════════════
+  Mueve el valor a .env y léelo con process.env / ENV.
+
+  Si la key ya llegó a un commit anterior, NO basta con
+  borrarla: queda en el historial. Revócala en el panel
+  del proveedor y genera una nueva.
+
+  Falso positivo:  git commit --no-verify
+═══════════════════════════════════════════════════════
+MSG
+  exit 1
+fi
+exit 0
