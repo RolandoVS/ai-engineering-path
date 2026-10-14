@@ -1,0 +1,41 @@
+# Secretos — nunca commitear
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Dependencias
+node_modules/
+vendor/bundle/
+.bundle/
+__pycache__/
+.venv/
+venv/
+*.pyc
+
+# Build
+dist/
+build/
+.next/
+tmp/
+log/
+
+# Datos pesados y modelos
+*.gguf
+*.safetensors
+data/raw/
+data/corpus/
+*.sqlite3
+*.db
+
+# Resultados de evals: los reportes sí, los dumps no
+evals/**/raw/
+evals/**/*.jsonl
+
+# SO / editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
