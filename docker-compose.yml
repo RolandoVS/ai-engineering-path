@@ -1,0 +1,62 @@
+# Infraestructura compartida del plan.
+# Una sola instancia de Postgres sirve a todas las fases; cada proyecto usa su
+# propia base de datos dentro de ella.
+#
+#   docker compose up -d
+#   docker compose ps          # debe decir "healthy"
+#   docker compose logs -f db
+#   docker compose down        # para; conserva los datos
+#   docker compose down -v     # BORRA los datos
+
+services:
+  db:
+    # Pineado a propósito: 'pg17' seguiría a la última y rompería la
+    # reproducibilidad del repo dentro de seis meses.
+    # pg17 y no pg18 porque es lo que ofrecen hoy la mayoría de servicios
+    # gestionados: así el tuning que aprendas en la Fase 2 transfiere tal cual.
+    image: pgvector/pgvector:0.8.7-pg17
+    container_name: ai-path-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ai_path
+      POSTGRES_PASSWORD: ai_path_local      # solo local; no sale de tu máquina
+      POSTGRES_DB: ai_path_dev
+      # Acelera mucho el arranque inicial. Seguro en local, NUNCA en producción.
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256"
+    ports:
+      # Si ya tienes Postgres en el 5432, cambia solo el lado izquierdo:
+      #   PGPORT=5433 docker compose up -d
+      - "${PGPORT:-5432}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      # Todo .sql aquí se ejecuta UNA VEZ, al crear el volumen por primera vez.
+      # Si lo editas después, necesitas 'docker compose down -v' para re-aplicarlo.
+      - ./infra/initdb:/docker-entrypoint-initdb.d:ro
+    command:
+      - postgres
+      # --- Ajustes pensados para trabajo vectorial en local ---
+      # El índice HNSW debe caber en memoria para que las consultas no toquen disco.
+      - -c
+      - shared_buffers=1GB
+      # El default (64MB) hace que construir un índice HNSW sobre una tabla grande
+      # tarde muchísimo o se quede sin memoria. Es el primer modo de fallo de
+      # pgvector que verás en la Fase 2.
+      - -c
+      - maintenance_work_mem=1GB
+      - -c
+      - work_mem=64MB
+      # Deja rastro de las consultas lentas: útil cuando una búsqueda vectorial
+      # se salta el índice sin avisar.
+      - -c
+      - log_min_duration_statement=500
+      - -c
+      - shared_preload_libraries=pg_stat_statements
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ai_path -d ai_path_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+volumes:
+  pgdata:

@@ -15,8 +15,8 @@ Dotenv.load(File.expand_path("../../../.env", __dir__))
 MODELO = :"claude-haiku-5-5"
 
 # fetch, no [] — queremos que reviente aquí y no con un 401 ambiguo.
-api_key = ENV.fetch("ANTHROPIC_API_KEY") do
-  warn "✗ Falta ANTHROPIC_API_KEY. ¿Copiaste .env.example a .env?"
+api_key = ENV.fetch('ANTHROPIC_API_KEY') do
+  warn '✗ Falta ANTHROPIC_API_KEY. ¿Copiaste .env.example a .env?'
   exit 1
 end
 

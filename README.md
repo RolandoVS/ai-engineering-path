@@ -80,6 +80,8 @@ Esos 15 minutos finales sostienen todo lo demás.
 
 ```
 PLAN.md                 El plan completo (v2, oct 2026)
+docker-compose.yml      Postgres + pgvector, compartido por todas las fases
+infra/initdb/           SQL que corre al crear la base por primera vez
 progress/
   semanas/              Un fichero por semana, con los 5 días dentro
 decisions/              ADRs. Uno por módulo, mínimo

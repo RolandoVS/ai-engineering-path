@@ -17,9 +17,10 @@ No es estudio. Es dejar el puesto montado para que la Semana 1 arranque sin fric
 - ☐ Primera llamada de prueba desde TS y desde Ruby, respondiendo correctamente
 
 ### Base de datos
-- ☐ Postgres local corriendo (Docker o nativo)
-- ☐ Extensión pgvector instalada: `CREATE EXTENSION vector;`
-- ☐ "Hola mundo": tabla con una columna `vector(3)`, un INSERT y un SELECT por distancia
+- ☐ Docker Desktop corriendo
+- ☐ `docker compose up -d` desde la raíz del repo
+- ☐ `docker compose ps` dice **healthy**
+- ☐ `./scripts/db-check.sh` pasa entero
 
 ### Contexto para las sesiones
 - ☐ Proyecto creado en Claude, con `PLAN.md` adjunto como contexto permanente
@@ -32,14 +33,19 @@ No es estudio. Es dejar el puesto montado para que la Semana 1 arranque sin fric
 
 ## Verificación de que el setup funciona
 
-Antes de cerrar la Semana 0, esto debe correr sin error:
-
-```sql
-CREATE EXTENSION IF NOT EXISTS vector;
-CREATE TABLE prueba (id serial PRIMARY KEY, embedding vector(3));
-INSERT INTO prueba (embedding) VALUES ('[1,2,3]'), ('[4,5,6]');
-SELECT id, embedding <-> '[3,1,2]' AS distancia FROM prueba ORDER BY distancia LIMIT 1;
+```bash
+cd ~/Documents/Projects/ai-engineering-path
+docker compose up -d
+./scripts/db-check.sh
 ```
+
+Debe imprimir versión de Postgres, versión de pgvector, los ajustes de memoria,
+y las tres filas de prueba ordenadas por distancia.
+
+**Lo que vas a ver y conviene que entiendas:** el `EXPLAIN` final dice *sequential
+scan*. Con tres filas es correcto — el planificador decide que recorrerlas es más
+barato que usar el índice. Con volumen real, ese mismo mensaje sería un bug, y es
+uno de los modos de fallo silenciosos de pgvector que atacas en la Fase 2.
 
 ## Cierre
 - **Horas reales:** __
