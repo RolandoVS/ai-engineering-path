@@ -7,13 +7,13 @@ No es estudio. Es dejar el puesto montado para que la Semana 1 arranque sin fric
 
 ### Repo y flujo
 - ☑ Repo `ai-engineering-path` creado con estructura, plantillas y tablero
-- ☐ `git init` y primer commit
+- ☑ `git init` y primer commit
 - ☐ Repo subido a GitHub (público — trabajar en público es parte del plan)
-- ☐ `.env` creado a partir de `.env.example`
+- ☑ `.env` creado a partir de `.env.example`
 
 ### Proveedores
-- ☐ API key de proveedor 1, con **límite de gasto configurado en el panel**
-- ☐ API key de proveedor 2 (necesitas dos para el comparativo de la Semana 2)
+- ☑ API key de proveedor 1, con **límite de gasto configurado en el panel**
+- ☑ API key de proveedor 2 (necesitas dos para el comparativo de la Semana 2)
 - ☐ Primera llamada de prueba desde TS y desde Ruby, respondiendo correctamente
 
 ### Base de datos

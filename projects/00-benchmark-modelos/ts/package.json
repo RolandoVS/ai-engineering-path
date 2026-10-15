@@ -1,0 +1,16 @@
+{
+  "name": "benchmark-modelos-ts",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "smoke": "node --env-file=../../../.env --experimental-strip-types src/smoke.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.134.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

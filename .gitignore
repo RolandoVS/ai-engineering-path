@@ -39,3 +39,5 @@ evals/**/*.jsonl
 .idea/
 .vscode/
 *.swp
+
+# Lockfiles SÍ se commitean: entorno reproducible.
