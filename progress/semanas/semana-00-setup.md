@@ -8,19 +8,19 @@ No es estudio. Es dejar el puesto montado para que la Semana 1 arranque sin fric
 ### Repo y flujo
 - ☑ Repo `ai-engineering-path` creado con estructura, plantillas y tablero
 - ☑ `git init` y primer commit
-- ☐ Repo subido a GitHub (público — trabajar en público es parte del plan)
+- ☑ Repo subido a GitHub (público — trabajar en público es parte del plan)
 - ☑ `.env` creado a partir de `.env.example`
 
 ### Proveedores
 - ☑ API key de proveedor 1, con **límite de gasto configurado en el panel**
 - ☑ API key de proveedor 2 (necesitas dos para el comparativo de la Semana 2)
-- ☐ Primera llamada de prueba desde TS y desde Ruby, respondiendo correctamente
+- ☑ Primera llamada de prueba desde TS y desde Ruby, respondiendo correctamente
 
 ### Base de datos
-- ☐ Docker Desktop corriendo
-- ☐ `docker compose up -d` desde la raíz del repo
-- ☐ `docker compose ps` dice **healthy**
-- ☐ `./scripts/db-check.sh` pasa entero
+- ☑ Docker Desktop corriendo
+- ☑ `docker compose up -d` desde la raíz del repo (con `PGPORT=5433`: el 5432 lo ocupa `adara_db`)
+- ☑ `docker compose ps` dice **healthy**
+- ☑ `./scripts/db-check.sh` pasa entero
 
 ### Contexto para las sesiones
 - ☐ Proyecto creado en Claude, con `PLAN.md` adjunto como contexto permanente
