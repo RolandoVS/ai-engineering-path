@@ -23,13 +23,13 @@ No es estudio. Es dejar el puesto montado para que la Semana 1 arranque sin fric
 - ☑ `./scripts/db-check.sh` pasa entero
 
 ### Contexto para las sesiones
-- ☐ Proyecto creado en Claude, con `PLAN.md` adjunto como contexto permanente
-- ☐ Probado que una conversación nueva arranca sabiendo en qué semana vas
+- ☑ Proyecto creado en Claude, con `PLAN.md` adjunto como contexto permanente
+- ☑ Probado que una conversación nueva arranca sabiendo en qué semana vas
 
 ### Calendario
-- ☐ Los 20 bloques de 4 h de las próximas 4 semanas, puestos como eventos reales
-- ☐ Sesión semanal de lunes (45 min) y de viernes (60 min), recurrentes
-- ☐ Festivos marcados: 16 nov, 1 feb, 15 mar, 26 mar — mueve el bloque, no acumules deuda
+- ⊘ ~Los 20 bloques de 4 h de las próximas 4 semanas, puestos como eventos reales~ — descartado por decisión propia
+- ⊘ ~Sesión semanal de lunes (45 min) y de viernes (60 min), recurrentes~ — descartado por decisión propia
+- ⊘ ~Festivos marcados: 16 nov, 1 feb, 15 mar, 26 mar — mueve el bloque, no acumules deuda~ — descartado por decisión propia
 
 ## Verificación de que el setup funciona
 
@@ -48,5 +48,5 @@ barato que usar el índice. Con volumen real, ese mismo mensaje sería un bug, y
 uno de los modos de fallo silenciosos de pgvector que atacas en la Fase 2.
 
 ## Cierre
-- **Horas reales:** __
-- **Qué quedó pendiente y cuándo lo cierro:**
+- **Horas reales:** 4 (de ~12 planeadas)
+- **Qué quedó pendiente y cuándo lo cierro:** nada. El calendario se descartó a propósito; el seguimiento del atraso vive en `progress/deuda.md` y `scripts/status.sh`. Repo público: https://github.com/RolandoVS/ai-engineering-path
