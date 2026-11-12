@@ -22,9 +22,16 @@ Si hubo estudio sin registrar, el atraso real es menor; sin log no cuenta.
 ## Causa
 Pendiente de escribir (una línea honesta: ¿qué pasó después del 15 oct?).
 
-## Decisión de recuperación
-Pendiente: comprimir Semana 1 (2–3 bloques) y mover el resto, o mover todo.
-Cuando se decida, registrarla en `decisions/` como ADR y enlazarla aquí.
+## Decisión de recuperación (11 nov 2026)
+Hacer la Semana 1 completa, sin comprimir ni mover el plan todavía. Es la semana más
+teórica y puede costar menos de las 20 h previstas.
+
+**Punto de revisión:** al cerrar la Semana 1, comparar horas reales con las 20 planeadas
+y decidir entonces si hace falta comprimir o mover las semanas siguientes. Si se decide,
+registrarlo como ADR en `decisions/` y enlazarlo aquí.
+
+**Regla mientras tanto:** anotar la fecha y las horas reales de cada bloque en el log,
+aunque sea "2 h". Sin ese dato la revisión no tiene base.
 
 ## Historial de cierres
 | Fecha de cierre | Semana | Horas plan | Horas reales | Atraso acumulado |
